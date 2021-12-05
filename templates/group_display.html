@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>FrontRunner</title>
+</head>
+<body>
+    <h1>{{ groupName }}</h1>
+        {% if message %}
+            <p class="message">{{ message | safe }}</p>
+        {% endif %}
+    <div class="groupTable">
+        <table>
+            <tr> 
+                <h3>Members</h3>
+            </tr>
+            {% for m in groupMembers %}
+            <tr>
+                <td>{{ m }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="owner"> 
+        <h4>Owner</h4>
+        <p>{{ groupOwner }}</p>
+    </div>
+    <div class="clear"></div>
+    <div>
+        </br>
+        <form action="/groups_page">
+            <input type="submit" value="Back to Groups" />
+        </form>
+        </br>
+        <form action="/">
+            <input type="submit" value="Back to Home" />
+        </form>
+    </div>
+
+
+        
+</body>
+</html>

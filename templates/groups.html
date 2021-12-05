@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>FrontRunner</title>
+</head>
+<body>
+    <h1>Groups</h1>
+        {% if message %}
+            <p class="message">{{ message | safe }}</p>
+        {% endif %}
+        <div class="row">
+            <div class="column left">
+                <h3>Create a Group</h3>
+                <form action="/create_group" method="POST"> 
+                    <div>
+                        <input type="text"
+                        id="groupName"
+                        name="groupName"
+                        placeholder="Group Name..."
+                        />
+                    </div>
+                    <div>
+                        <h3>Please select one</h3>
+                        <select name="is_public">
+                        <option value="">Select</option>
+                        <option value="True">Public</option>
+                        <option value="False">Private</option>
+                        </select>
+                    </div>
+                    </br>
+                    <input type="submit" value="Create Group" class="btn" />
+                </form>
+                </br>
+                </br>
+                <form action="/">
+                    <input type="submit" value="Back to Home" />
+                </form>
+            </div>
+            <div class="column left">
+                <h3>Your Groups</h3>
+                {% for g in groups %}
+                    <tr>
+                        <td>{{ g.name }}
+                            <form class="add-padding" method='POST' action="/groups_display">
+                                <button type="submit" name="groupID" value={{ g.gid }}>View Group</button>
+                            </form>
+                        </td>
+                        <br>
+                    </tr>    
+                {% endfor %}
+            </div>
+            <div class="column groupbuttons">
+                </br>
+                <form action="/join_group_page">
+                    <input type="submit" value="Join a Group" />
+                </form>
+            </br>
+            <form action="/leave_group_page">
+                <input type="submit" value="Leave a Group" />
+            </form>
+            </br>
+            <form action="/delete_group_page">
+                <input type="submit" value="Delete a Group" />
+            </form>
+            </div>
+        </div>
+    
+</body>
+</html> 

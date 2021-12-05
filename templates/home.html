@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>FrontRunner</title>
+</head>
+<body>
+    <h1>FrontRunner</h1>
+    {% if message %}
+        <p class="message">{{ message | safe }}</p>
+    {% endif %}
+    <form action="/submit" method="POST"> 
+        <div>
+            <h3> Please enter a distance, and latitude, longitude of a starting point for the route you would like to run</h3>
+            <input type="number"
+            id="distance"
+            name="distance"
+            placeholder="Distance"
+            />
+            <input type="number" step="0.000001"
+            id="lat"
+            name="lat"
+            placeholder="Latitude"
+            />
+            <input type="number" step="0.000001"
+            id="lon"
+            name="lon"
+            placeholder="Longitude"
+            />
+            <input type="submit" value="Submit" class="btn" />
+        </div>
+    </form>
+    </br>
+    <form action="/my_paths_page">
+        <input type="submit" value="My Paths" />
+    </form>
+    </br>
+    <form action="/groups_page">
+        <input type="submit" value="Groups" />
+    </form>
+    </br>
+    <form action="/friends_page">
+        <input type="submit" value="Friends" />
+    </form>
+</body>
+</html> 

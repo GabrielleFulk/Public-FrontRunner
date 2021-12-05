@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+  }
+
+.column {
+    float: left;
+    padding: 10px;
+  }
+  
+  .left {
+    width: 25%;
+  }
+  
+  .right {
+    width: 75%;
+  }
+
+  .groupbuttons {
+    width: 50%
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  .paths-row{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start
+    }
+
+  .add-padding{
+    padding-right: 12px;
+  }
+
+  .view-friend-path{
+    padding-left: 10px
+  }
+
+  .groupTable{
+    width: 300px;
+    margin-right: 2%;
+    float:left;
+  }
+
+  .owner{
+    float:left;
+  }
+
+  .clear{
+    clear: both;
+  }
+

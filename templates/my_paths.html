@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>FrontRunner</title>
+</head>
+<body>
+    <h1>My Paths</h1>
+        {% if message %}
+            <p class="message">{{ message | safe }}</p>
+        {% endif %}
+    </br>
+
+    <table>
+        <tr>
+            <th>Path</th>
+            <th>Privacy (click to change)</th>
+            <th>Length (miles)</th>
+            <th>Times Run</th>
+            <th>Favorite? (click to change)</th>
+        </tr>
+        {% for p in paths %}
+        <tr>
+            <td class="paths-row">
+                <div class="add-padding">--path--</div>
+                <form class="add-padding" method='POST' action="/show_path">
+                    <button type="submit" name="pathID" value={{ p.pid }}>View Path</button>
+                </form>
+                <form method='POST' action="/delete_path">
+                    <button type="submit" name="pathID" value={{ p.pid }}>Delete Path</button>
+                </form>
+            </td>
+            <td>   
+                <form method='POST' action="/edit_path_privacy">
+                    <button type="submit" name="pathID" value={{ p.pid }}>
+                        {% if p.is_public %} Public {% endif %}
+                        {% if not p.is_public %} Private {% endif %}
+                    </button>
+                </form>
+            </td>
+            <td>{{ p.length }}</td>
+            <td class="paths-row">
+                <div class="add-padding">{{ p.times_run }}</div>
+                <form class="add-padding" method='POST' action="/my_paths_page_increase_time">
+                    <button type="submit" name="Increase" value={{ p.pid }}>+</button>
+                </form>
+                <form method='POST' action="/my_paths_page_decrease_time">
+                    <button type="submit" name="Decrease" value={{ p.pid }}>-</button>
+                </form>
+            </td>
+            <td>
+                <form method='POST' action="/favorite_path">
+                    <button type="submit" name="pathID" value={{ p.pid }}>
+                        {% if p.favorite %} Favorite {% endif %}
+                        {% if not p.favorite %} ______ {% endif %}
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </br>
+    <form action="/">
+        <input type="submit" value="Back to Home" />
+    </form>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>FrontRunner</title>
+</head>
+<body>
+    <h1>{{ friend.username }}'s Public Paths</h1>
+        {% if message %}
+            <p class="message">{{ message | safe }}</p>
+        {% endif %}
+    </br>
+
+    {% if paths %}
+    <table>
+        <tr>
+            <th>Path</th>
+            <th>Length (miles)</th>
+            <th>Times Run</th>
+            <th>Favorite?</th>
+        </tr>
+        {% for p in paths %}
+        <tr>
+            <td class="paths-row">
+                <div class="add-padding">--path--</div>
+                <form method='POST' action="/show_path">
+                    <button type="submit" name="pathID" value={{ p.pid }}>View Path</button>
+                </form>
+            </td>
+            <td>{{ p.length }}</td>
+            <td class="paths-row">
+                <div>{{ p.times_run }}</div>
+            </td>
+            <td>{% if p.favorite %} Favorite {% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    </br>
+    <form action="/friends_page">
+        <input type="submit" value="Back to Friends" />
+    </form>
+    <br>
+    <form action="/">
+        <input type="submit" value="Back to Home" />
+    </form>
+</body>
+</html>
